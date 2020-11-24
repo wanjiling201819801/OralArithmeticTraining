@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class AddSubOperation {
     public static void main(String[] args) throws Exception {
+
+        //生成算式
         short num1=0,num2=0,op=0;
         char o='+';
         String[] strings= new String[55];
@@ -24,7 +26,7 @@ public class AddSubOperation {
             //System.out.println(strings[i]);
         }
 
-        //将所有生成的算式存入到文件中
+        //题目生成：将所有生成的算式存入到文件中
         FileWriter fin = new FileWriter("formulaGeneration.txt");
         BufferedWriter bin = new BufferedWriter(fin);
         for (int i = 0; i <50 ; i++) {
@@ -33,7 +35,7 @@ public class AddSubOperation {
         }
         bin.close(); //必须要关闭，内容才能全部写进去
 
-        //逐行取出每行的算式，显示出来等待用户输入结果，将用户结果和正确答案比较，给出评判
+        //加减法计算：逐行取出每行的算式，显示出来等待用户输入结果，将用户结果和正确答案比较，给出评判
         FileReader fout = new FileReader("formulaGeneration.txt");
         BufferedReader bout = new BufferedReader(fout);
         for (int i = 0; i <50 ; i++) {
