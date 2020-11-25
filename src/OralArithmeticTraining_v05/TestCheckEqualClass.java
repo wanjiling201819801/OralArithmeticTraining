@@ -3,9 +3,7 @@ package OralArithmeticTraining_v05;
 import static OralArithmeticTraining_v05.OralArithmeticTraining_v05.*;
 import java.util.Scanner;
 //检测习题册中是否有重复算式
-//0 1 2
-//1 3 2
-//0 1 2
+
 
 public class TestCheckEqualClass {
     public static void main(String[] args) {
@@ -14,15 +12,16 @@ public class TestCheckEqualClass {
 
     public static void TestCheckEqual(){
         //i加入习题集的题目数量  equ[]待检测加入的算式  equSet[][]习题集
-        int equ[] = new int[4];
-        int  equSet[][] =new int[4][5];
+        int[] equ = new int[4];
+        int[][] equSet =new int[4][5];
         int res;
         Scanner in = new Scanner(System.in);
         System.out.println("输入算式：符号 左操作数 右操作数");
         for(int i=0;i<5;i++){
             //输入算式
-            for (int k = 0; k <3; k++) {
+            for (int k = 0; k <3; k++) { // 0 1 2
                 equ[k]=in.nextInt();
+                //System.out.print("*"+equ[k]+"*");
             }
             if(equ[0]==ADD_SIGN){
                 res = equ[1]+equ[2];
@@ -41,12 +40,15 @@ public class TestCheckEqualClass {
                     }
                 }
             }
-            if(flag == true) {
-                for (int k = 0; k < 4; k++) {//0 1 2 3
+            if(flag == false) {
+                System.out.println("该算式是重复的");
+                break;
+            }else{
+                //符合要求，加入题集
+                for (int k = 0; k < 3; k++) {//0 1 2 3
                     equSet[k][i] = equ[k];
                 }
-            }else{
-                System.out.println("该算式是重复的");
+                equSet[3][i] = res;
             }
         }
     }

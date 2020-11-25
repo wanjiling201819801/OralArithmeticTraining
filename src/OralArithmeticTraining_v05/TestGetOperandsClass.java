@@ -37,7 +37,7 @@ public class TestGetOperandsClass {
 
         for (int op = -2; op < 2; op++) { // -2 -1 0 1
             if (checkOperands(op)==false){
-                System.out.println(op+"是非法数，"+"请重新赋值");
+                System.out.println(op+"是非法数");
             }else{
                 System.out.println(op+"在[0,100]之间");
             }
@@ -52,3 +52,8 @@ public class TestGetOperandsClass {
         }
     }
 }
+
+
+
+
+
