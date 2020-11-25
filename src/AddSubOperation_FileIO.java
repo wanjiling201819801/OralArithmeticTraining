@@ -3,7 +3,7 @@ import java.nio.CharBuffer;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AddSubOperation {
+class AddSubOperation {
     public static void main(String[] args) throws Exception {
 
         //生成算式
