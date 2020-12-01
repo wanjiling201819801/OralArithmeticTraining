@@ -43,7 +43,7 @@ public class OralArithmeticTraining_v05 {
         }
     }
 
-    //生成操作数 范围[0,Max]
+    //生成操作数 范围[0,100]
     public static int GetOperands(){
         Random random = new Random();
         //return (random.nextInt(2*Max+1)-Max); //操作数范围 [-Max,Max]
@@ -55,8 +55,8 @@ public class OralArithmeticTraining_v05 {
     }
 
     //为检验获得操作数确实在[0,100]之间
-    public static boolean checkOperands(int op){
-        return op <= 100 && op >= 0;
+    public static boolean checkOperands(int operands){
+        return operands <= 100 && operands >= 0;
     }
 
     //生成算式
@@ -143,19 +143,23 @@ public class OralArithmeticTraining_v05 {
 
     //生成习题集
     public static void CreateExercise(int[][] equSet){
-        int[] equ = new int[OPMAX];
-
-        for(int i=0; i<Max; i++) {
+        int[] equ = new int[4];
+        int[] subSet = new int[4];
+        for(int i=0; i<Max; i++) { //加入习题集的个数 0 1 2 3
             //生成算式
-            GenerateEquations(equ);
-            boolean flag=false;
-            if(CheckEqual(i,equ,equSet)==false) {
-                i--;
-                continue;
-            }else {
-                //将算式加入习题集
-                for (int k = 0; k < 4 ; k++) {//0 1 2 3
-                    equSet[k][i]=equ[k];
+            GenerateEquations(equ);  //返回四个值的数组
+            for (int j = i-1; j >=0 ; j--) { //-1 0 1 2
+                for (int k = 0; k < 4; k++) {
+                    subSet[k]= equSet[k][j];
+                }
+                if(CheckEqual(equ,subSet)==false) {
+                    i--;
+                    continue;
+                }else {
+                    //将算式加入习题集
+                    for (int k = 0; k < 4 ; k++) {//0 1 2 3
+                        equSet[k][i]=equ[k];
+                    }
                 }
             }
         }
@@ -164,23 +168,12 @@ public class OralArithmeticTraining_v05 {
     }
 
     //检查重复算式
-    public static boolean CheckEqual(int i, int[] equ, int[][] equSet){
-        //i 加入习题集的题目数量  equ[]待检测加入的算式  equSet[][]习题集
-        int op = equ[0];
-        int leftOperand = equ[1];
-        int rightOperand = equ[2];
-        int res = equ[3];
-
-        boolean flag = false;
-        //当前预生成的算式equ 和 前面的所有算式equSet[][j] 进行比较
-        for(int j=i-1;j>=0;j--) { //-1 0 1
-            //如果两个算式的结果相等，可能算式一样
-            if( res == equSet[3][j] ) {
-                //两个操作数 和 运算符 一样
-                if(((leftOperand==equSet[1][j]&&rightOperand==equSet[2][j])||(leftOperand==equSet[2][j]&&rightOperand==equSet[1][j]))&&op==equSet[0][j]){
-                    return false;
-                }
-            }
+    public static boolean CheckEqual(int[] equ, int[] subEquSet){
+        //equ[]待检测的算式  subEquSet[]已加入习题集中的算式
+        //比较算式结果
+        if(equ[3]==subEquSet[3]){
+            //比较 两个操作数 和 运算符 一样
+            return ((equ[1] != subEquSet[1] || equ[2] != subEquSet[2]) && (equ[2] != subEquSet[1] || equ[1] != subEquSet[2])) || equ[0] != subEquSet[0];
         }
         return true;
     }
@@ -228,5 +221,4 @@ public class OralArithmeticTraining_v05 {
         }
         return correct;
     }
-
 }

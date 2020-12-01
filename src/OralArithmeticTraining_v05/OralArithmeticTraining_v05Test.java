@@ -1,15 +1,9 @@
 package OralArithmeticTraining_v05;
 
+import static OralArithmeticTraining_v05.OralArithmeticTraining_v05.*;
+
 public class OralArithmeticTraining_v05Test {
-    public static int Max = 50;      //习题集算式数量
-    public static int ADD_SIGN = 0;  //加法对应的整型
-    public static int SUB_SIGN = 1;  //减法对应的整型
-    public static int OPMAX = 6;
-    //二维数组中一位数组的个数
-    // 0 符号，1 左操作数, 2 右操作数，3 正确答案, 4 用户答案, 5 判断结果（0错误 1正确）
-    public static double RATIO = 0.7;//加减法比例
-    public static int STRLEN = 15;   //算式间距
-    public static int COLNUM = 4;    //显示习题的列数
+
 
     public static void main(String[] args) {
         int[][] equSet = new int[OPMAX][Max];

@@ -16,17 +16,17 @@ public class TestGenerateEquationsClass {
         }
 
     }
-    public static void TestGenerateEquations(int equ[]){
+    public static void TestGenerateEquations(int[] equ){
 
         //加法 和不超过100
         if(equ[0]==ADD_SIGN){
             AddEquation(equ);
-            System.out.println(equ[1]+"+"+equ[2]);
+            System.out.println(equ[1]+"+"+equ[2]+"="+equ[3]);
         }
         //减法 差不小于0
         if (equ[0]==SUB_SIGN){
             SubEquation(equ);
-            System.out.println(equ[1]+"-"+equ[2]);
+            System.out.println(equ[1]+"-"+equ[2]+"="+equ[3]);
         }
 
     }
